@@ -1,0 +1,74 @@
+version: 2
+
+sources:
+  - name: song
+    database: raw
+    schema: song
+    tables:
+      - name: song_published
+        columns:
+        - name: songid
+        tests:
+          - unique
+          - not null
+      - name: song_listened
+        columns:
+          - name: songid,
+            tests:
+              - unique
+              - not null
+          - name: deviceid 
+            tests:
+              - unique
+              - not_null
+      - name: song_removed
+        columns:
+          - name: songid,
+            tests:
+              - unique
+              - not null
+      - name: customer_registered
+        columns:
+          - name: customerid,
+            tests:
+              - unique
+              - not null
+          - name: customerdateofbirth,
+            tests:
+              - not null
+              - dbt_utils.date_format:
+                  dateformat: '%Y-%m-%d'
+models:
+      - name: stg_song_published
+        columns: 
+         - name: songid
+           tests:
+           - unique
+           - not_null
+      - name: stg_song_listened
+        columns: 
+         - name: songid
+           tests:
+           - unique
+           - not_null
+      - name: deviceid
+        tests:
+          - unique
+          - not null
+      - name: stg_song_removed
+        columns:
+          - name: songid,
+            tests:
+              - unique
+              - not null
+      - name: stg_customer_registered
+        columns:
+          - name: customerid,
+            tests:
+              - unique
+              - not null
+          - name: customerdateofbirth,
+            tests:
+              - not null
+              - dbt_utils.date_format:
+                  dateformat: '%Y-%m-%d'
