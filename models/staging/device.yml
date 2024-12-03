@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: device
+    database: raw
+    schema: device
+    tables:
+      - name: device_allocated
+        columns:
+          - name: devicedetails
+            tests:
+              - unique
+              - not null
+          - name: deviceid
+            tests:
+             - unique
+             - not null
+
+models:
+      - name: device_allocated
+        columns:
+          - name: devicedetails
+            tests:
+              - unique
+              - not null
+          - name: deviceid
+            tests:
+             - unique
+             - not null

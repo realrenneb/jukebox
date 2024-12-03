@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: payment
+    database: raw
+    schema: payment
+    tables:
+      - name: payment_received
+        columns:
+          - name: payment
+            tests:
+              - unique
+              - not null
+
+models:
+      - name: payment_received
+        columns:
+          - name: payment
+            tests:
+              - unique
+              - not null
