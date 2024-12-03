@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_customer
+    config:
+      materialized: table
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
