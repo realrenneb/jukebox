@@ -7,19 +7,37 @@ sources:
     tables:
       - name: customer_registered
         columns:
-          - name: customerid,
+          - name: customerid
             tests:
               - unique
-              - not null
-          - name: customerdateofbirth,
+              - not_null
+          - name: customeridentitynumber
             tests:
-              - not null
+            - unique
+            - not_null
+          - name: customerdateofbirth
+            tests:
+              - not_null
               - dbt_utils.date_format:
                   dateformat: '%Y-%m-%d'
-                  
+
 models:
+      - name: customer_registered
+        columns:
+          - name: customerid
+            tests:
+              - unique
+              - not_null
           - name: customerdateofbirth,
             tests:
-              - not null
+              - not_null
               - dbt_utils.date_format:
                   dateformat: '%Y-%m-%d'
+          - name: customerdateofbirth
+            tests:
+              - not_null
+              - dbt_utils.date_format:
+                  dateformat: '%Y-%m-%d'
+     
+ 
+

@@ -27,17 +27,7 @@ sources:
             tests:
               - unique
               - not null
-      - name: customer_registered
-        columns:
-          - name: customerid,
-            tests:
-              - unique
-              - not null
-          - name: customerdateofbirth,
-            tests:
-              - not null
-              - dbt_utils.date_format:
-                  dateformat: '%Y-%m-%d'
+
 models:
       - name: stg_song_published
         columns: 
@@ -61,14 +51,3 @@ models:
             tests:
               - unique
               - not null
-      - name: stg_customer_registered
-        columns:
-          - name: customerid,
-            tests:
-              - unique
-              - not null
-          - name: customerdateofbirth,
-            tests:
-              - not null
-              - dbt_utils.date_format:
-                  dateformat: '%Y-%m-%d'
