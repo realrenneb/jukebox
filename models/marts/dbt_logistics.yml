@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: dim_logistics
+    config:
+      materialized: table
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: location_id
+        tests:
+          - unique
+          - not_null

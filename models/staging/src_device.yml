@@ -15,6 +15,12 @@ sources:
             tests:
              - unique
              - not null
+      - name: device_purchased
+        columns:
+          - name: deviceid
+            tests:
+              - unique
+              - not null
 
 models:
       - name: device_allocated
@@ -27,3 +33,10 @@ models:
             tests:
              - unique
              - not null
+      - name: device_purchased
+        columns:
+          - name: deviceid
+            tests:
+              - unique
+              - not null
+

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: dim_song_listened
+    config:
+      materialized: table
+    columns:
+      - name: song_id
+        tests:
+          - unique
+          - not_null
+      - name: device_id
+        tests:
+          - unique
+          - not_null

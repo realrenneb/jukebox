@@ -1,13 +1,14 @@
-with customer_dim as (
-    select 
+with location_registered as (
+
+    select
         customer_id,
-        customer_name,
-        customer_id_num,
-        customer_email,
-        customer_phone_num,
-        address,
-        customer_dob,
-        occured_at as created_at
-    from {{ ref('stg_customer_registered') }}
+        contact_phone_num,
+        location_id,
+        latitude,
+        longitude,
+        occurred_at as installation_date
+
+    from {{ ref('stg_location_registered') }}
+
 )
-select * from customer_dim
+select * from location_registered

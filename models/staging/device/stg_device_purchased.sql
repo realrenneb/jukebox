@@ -1,13 +1,11 @@
-with device_allocated as (
+with device_purchased as (
 
     select
         devicedetails as device_details,
         deviceid as device_id,
-        locationallocatedid as location_allocated_id ,
         occurredat as occurred_at,
-        sellingagent as selling_agent
 
-    from {{ source('device', 'device_allocated') }}
+    from {{ source('device', 'device_purchased') }}
 
 )
-select * from device_allocated
+select * from device_purchased
