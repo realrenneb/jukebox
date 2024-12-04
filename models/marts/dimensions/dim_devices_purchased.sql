@@ -1,4 +1,4 @@
-with device_purchased as (
+with devices_purchased as (
 
 select 
    device_id,
@@ -10,4 +10,4 @@ select
 from {{ ref('stg_device_purchased') }}
 
 )
-select * from device_purchased
+select * from devices_purchased

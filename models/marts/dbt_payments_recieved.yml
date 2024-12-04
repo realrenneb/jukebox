@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_payments_received
+    config:
+      materialized: table
+    columns:
+      - name: payment_id
+        tests:
+          - not_null
+          - unique

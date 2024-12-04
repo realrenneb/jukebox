@@ -1,4 +1,4 @@
-with payment_received as (
+with payments_received as (
    select
        PARSE_JSON(payment):CustomerId::varchar as customer_id,
        PARSE_JSON(payment):PaymentAmount::numeric as payment_amount,
@@ -7,4 +7,4 @@ with payment_received as (
        TO_CHAR(TO_TIMESTAMP(PARSE_JSON(payment):OccurredAt::varchar, 'YYYY-MM-DD"T"HH24:MI:SS"Z"'), 'HH24:MI:SS') as time_received
    from {{ ref('stg_payment_received') }}
 )
-select * from payment_received
+select * from payments_received
