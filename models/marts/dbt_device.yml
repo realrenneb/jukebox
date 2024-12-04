@@ -1,31 +1,27 @@
 version: 2
 
 models:
-  - name: dim_song_listened
+  - name: dim_device_allocated
     config:
       materialized: table
     columns:
-      - name: song_id
+      - name: agent_id
         tests:
-          - unique
           - not_null
       - name: device_id
         tests:
           - unique
           - not_null
-  - name: dim_song_published
+
+  - name: dim_device_purchased
     config:
       materialized: table
     columns:
-      - name: song_id
+      - name: device_id
         tests:
-          - unique
           - not_null
-  - name: dim_song_removed
-    config:
-      materialized: table
-    columns:
-      - name: song_id
+          - unique
+      - name: serial_number
         tests:
-          - unique
           - not_null
+          - unique

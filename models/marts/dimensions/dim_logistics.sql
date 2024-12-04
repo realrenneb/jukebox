@@ -6,7 +6,7 @@ with location_registered as (
         location_id,
         latitude,
         longitude,
-        occurred_at as installation_date
+        TO_CHAR(to_date(occurred_at, 'DD/MM/YYYY HH24:MI:SS.FF'), 'DD/MM/YYYY') as date_installed
 
     from {{ ref('stg_location_registered') }}
 
