@@ -38,14 +38,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # dbt_project.yml
 models:
   jukebox:
+    marts:
+      dimensions:
+        +materialized: table
+        +schema: dimensions
+      facts:
+        +materialized: table
+        +schema: facts
     staging:
       +materialized: view
       +schema: staging
-    
-    dimensions:
-      +materialized: table
-      +schema: dimensions
-    
-    facts:
-      +materialized: table 
-      +schema: facts
