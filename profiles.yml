@@ -10,3 +10,4 @@ default:
       database: PC_DBT_DB
       warehouse: [Transforming]
       schema: DBT_RBOTCHWAY_STAGING
+

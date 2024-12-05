@@ -1,0 +1,4 @@
+source_code,source_description,transaction_type
+device_sale,Device Sales Revenue,revenue
+song_play,Song Play Revenue,revenue
+stock_purchase,Stock Purchase Cost,cost
