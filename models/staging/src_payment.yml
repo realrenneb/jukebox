@@ -7,15 +7,15 @@ sources:
     tables:
       - name: payment_received
         columns:
-          - name: payment
+          - name: payment        
             tests:
-              - unique
-              - not null
+              - not_null        
 
 models:
-      - name: payment_received
-        columns:
-          - name: payment
-            tests:
-              - unique
-              - not null
+  - name: stg_payment_received
+    description: "Staging model for payment data, contains raw JSON"
+    columns:
+      - name: payment
+        description: "Raw JSON payment data"
+        tests:
+          - not_null

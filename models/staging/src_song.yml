@@ -7,47 +7,51 @@ sources:
     tables:
       - name: song_published
         columns:
-        - name: songid
-        tests:
-          - unique
-          - not null
-      - name: song_listened
-        columns:
-          - name: songid,
+          - name: songid
             tests:
               - unique
-              - not null
+              - not_null   
+      
+      - name: song_listened
+        columns:
+          - name: songid   
+            tests:
+              - unique
+              - not_null
           - name: deviceid 
             tests:
               - unique
               - not_null
+      
       - name: song_removed
         columns:
-          - name: songid,
+          - name: songid    
             tests:
               - unique
-              - not null
+              - not_null
 
 models:
-      - name: stg_song_published
-        columns: 
-         - name: songid
-           tests:
-           - unique
-           - not_null
-      - name: stg_song_listened
-        columns: 
-         - name: songid
-           tests:
-           - unique
-           - not_null
+  - name: stg_song_published
+    columns: 
+      - name: songid
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_song_listened
+    columns: 
+      - name: songid
+        tests:
+          - unique
+          - not_null
       - name: deviceid
         tests:
           - unique
-          - not null
-      - name: stg_song_removed
-        columns:
-          - name: songid,
-            tests:
-              - unique
-              - not null
+          - not_null
+  
+  - name: stg_song_removed
+    columns:
+      - name: songid     
+        tests:
+          - unique
+          - not_null

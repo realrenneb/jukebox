@@ -1,43 +1,57 @@
 version: 2
 
 sources:
-  - name: customer
-    database: raw
-    schema: customer
-    tables:
-      - name: customer_registered
-        columns:
-          - name: customerid
-            tests:
-              - unique
-              - not_null
-          - name: customeridentitynumber
-            tests:
-            - unique
-            - not_null
-          - name: customerdateofbirth
-            tests:
-              - not_null
-              - dbt_utils.date_format:
-                  dateformat: '%Y-%m-%d'
+ - name: customer
+   database: raw
+   schema: customer
+   tables:
+     - name: customer_registered
+       columns:
+         - name: customerid
+           tests:
+             - unique
+             - not_null
+         - name: customeridentitynumber
+           tests:
+             - unique
+             - not_null
+         - name: customerdateofbirth
+           tests:
+             - not_null
+         - name: customeremail
+           tests:
+             - not_null
+         - name: customerphonenumber
+           tests:
+             - not_null
 
 models:
-      - name: customer_registered
-        columns:
-          - name: customerid
-            tests:
-              - unique
-              - not_null
-          - name: customerdateofbirth,
-            tests:
-              - not_null
-              - dbt_utils.date_format:
-                  dateformat: '%Y-%m-%d'
-          - name: customerdateofbirth
-            tests:
-              - not_null
-              - dbt_utils.date_format:
-                  dateformat: '%Y-%m-%d'
-     
- 
-
+ - name: stg_customer_registered
+   description: "Staging model for customer data"
+   columns:
+     - name: customer_id
+       tests:
+         - unique
+         - not_null
+     - name: customer_id_num
+       tests:
+         - unique
+         - not_null
+     - name: customer_name
+       tests:
+         - not_null
+     - name: customer_email
+       tests:
+         - not_null
+     - name: customer_phone_num
+       tests:
+         - not_null
+     - name: customer_dob
+       tests:
+         - not_null
+     - name: address
+       tests:
+         - not_null
+     - name: occurred_at
+       tests:
+         - not_null

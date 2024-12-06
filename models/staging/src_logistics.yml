@@ -1,49 +1,59 @@
 version: 2
 
 sources:
-  - name: customer
-    database: raw
-    schema: customer
-    tables:
-      - name: location_registered
-        columns:
-          - name: customerid,
-            tests:
-              - unique
-              - not null
-              - relationships:
-                  to: ref('stg_customer_registered') # as per data model
-                  field: customerid
-          - name: contactphonenumber
-            tests:
-              - not_null
-          - name: occurredat
-            tests:
-              - not_null
-
-                 
-# additional test depending on business requirement: 
-  #location exists within African boundaries
-  #contact details format consistency
-  #duplicate coordinates within reasonable radius
+ - name: customer
+   database: raw
+   schema: customer
+   tables:
+     - name: location_registered
+       columns:
+         - name: customerid    
+           tests:
+             - unique
+             - not_null      
+             - relationships:
+                 to: ref('stg_customer_registered')
+                 field: customerid
+         - name: contactphonenumber
+           tests:
+             - not_null
+         - name: locationid
+           tests:
+             - unique
+             - not_null
+         - name: latitude
+           tests:
+             - not_null
+         - name: longitude
+           tests:
+             - not_null
+         - name: occurredat
+           tests:
+             - not_null
 
 models:
- 
-      - name: location_registered
-        columns:
-          - name: customerid,
-            tests:
-              - unique
-              - not null
-              - relationships:
-                  to: ref('stg_customer_registered')
-                  field: customerid
-          - name: contactphonenumber
-            tests:
-              - not_null
-          - name: occurredat
-            tests:
-              - not_null
-
- 
-
+ - name: stg_location_registered
+   columns:
+     - name: customer_id
+       tests:
+         - unique
+         - not_null
+         - relationships:
+             to: ref('stg_customer_registered')
+             field: customer_id
+     - name: contact_phone_num
+       tests:
+         - not_null
+     - name: location_id
+       tests:
+         - unique
+         - not_null
+     - name: latitude
+       tests:
+         - not_null
+     - name: longitude
+       tests:
+         - not_null
+     - name: occurred_at
+       tests:
+         - not_null

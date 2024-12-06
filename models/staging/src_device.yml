@@ -1,42 +1,55 @@
 version: 2
 
 sources:
-  - name: device
-    database: raw
-    schema: device
-    tables:
-      - name: device_allocated
-        columns:
-          - name: devicedetails
-            tests:
-              - unique
-              - not null
-          - name: deviceid
-            tests:
+ - name: device
+   database: raw
+   schema: device
+   tables:
+     - name: device_allocated
+       columns:
+         - name: devicedetails   # JSON field
+           tests:
+             - not_null
+         - name: deviceid
+           tests:
              - unique
-             - not null
-      - name: device_purchased
-        columns:
-          - name: deviceid
-            tests:
-              - unique
-              - not null
+             - not_null
+         - name: location_allocated_id
+           tests:
+             - not_null
+     
+     - name: device_purchased
+       columns:
+         - name: deviceid
+           tests:
+             - unique
+             - not_null
+         - name: device_details  # JSON field
+           tests:
+             - not_null
 
 models:
-      - name: device_allocated
-        columns:
-          - name: devicedetails
-            tests:
-              - unique
-              - not null
-          - name: deviceid
-            tests:
-             - unique
-             - not null
-      - name: device_purchased
-        columns:
-          - name: deviceid
-            tests:
-              - unique
-              - not null
-
+ - name: stg_device_allocated   # Added stg_ prefix
+   description: "Staging model for allocated devices"
+   columns:
+     - name: deviceid
+       tests:
+         - unique
+         - not_null
+     - name: device_name        # Parsed from JSON
+       tests:
+         - not_null
+     - name: device_price
+       tests:
+         - not_null
+     - name: location_allocated_id
+       tests:
+         - not_null
+ 
+ - name: stg_device_purchased
+   description: "Staging model for purchased devices"
+   columns:
+     - name: deviceid
+       tests:
+         - unique
+         - not_null
