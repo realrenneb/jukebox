@@ -32,7 +32,7 @@ receivable_amounts as (
         'receivable' as type,
         c.customer_name,
         'song_played' as function,
-        count(*) * 1.00 as amount  -- $1 per play expected
+        count(*) * 1.00 as amount  -- assumption of $1 per play expected
     from {{ ref('dim_song_listened') }} sp
     join {{ ref('dim_devices_allocated') }} da on sp.device_id = da.device_id
     join {{ ref('dim_customer_registered') }} c on da.customer_id = c.customer_id
